@@ -11,15 +11,15 @@
         >
             <div class="col-md-12 position-relative">
                 <select
-                    class="form-select btn-pd"
                     v-model="obj.pfpj"
+                    class="form-select btn-pd"
                     required
                     :disabled="pay"
                 >
                     <option
-                        :value="option.value"
                         v-for="(option, index) in options"
                         :key="index"
+                        :value="option.value"
                         :disabled="option.value === null"
                         :selected="option.value === null"
                     >
@@ -28,8 +28,8 @@
                 </select>
 
                 <p
-                    class="text-start ps-1 mt-1 text-danger fw-bold"
                     v-show="errors.tipo"
+                    class="text-start ps-1 mt-1 text-danger fw-bold"
                 >
                     {{ errors.tipo }}
                 </p>
@@ -41,15 +41,15 @@
             >
                 <div class="col-md-6">
                     <input
-                        type="text"
                         id="input-name-pf"
+                        v-model="obj.nome"
+                        type="text"
                         class="form-control btn-pd"
                         :class="{ 'is-invalid': errors.nome }"
                         placeholder="Digite Seu Nome"
-                        v-model="obj.nome"
                         :disabled="pay"
-                        @input="validateInputs($event.target.id)"
                         required
+                        @input="validateInputs($event.target.id)"
                     />
 
                     <div
@@ -63,13 +63,13 @@
 
                 <div class="col-md-6">
                     <input
-                        type="text"
                         id="input-cpf"
+                        v-model="obj.cpf_cnpj"
+                        v-mask="mascara.cpf"
+                        type="text"
                         :class="{ 'is-invalid': errors.cpf }"
                         class="form-control btn-pd"
                         placeholder="Digite seu CPF"
-                        v-model="obj.cpf_cnpj"
-                        v-mask="mascara.cpf"
                         required
                         :disabled="pay"
                         @input="validateInputs($event.target.id)"
@@ -91,11 +91,11 @@
             >
                 <div class="col-md-6">
                     <input
-                        type="text"
                         id="input-name-pj"
+                        v-model="obj.nome"
+                        type="text"
                         class="form-control btn-pd"
                         :class="{ 'is-invalid': errors.nome }"
-                        v-model="obj.nome"
                         placeholder="Digite Nome da Sua Empresa"
                         required
                         :disabled="pay"
@@ -113,13 +113,13 @@
 
                 <div class="col-md-6">
                     <input
-                        type="text"
                         id="input-cnpj"
+                        v-model="obj.cpf_cnpj"
+                        v-mask="mascara.cnpj"
+                        type="text"
                         class="form-control btn-pd"
                         :class="{ 'is-invalid': errors.cnpj }"
                         placeholder="Digite seu CNPJ"
-                        v-model="obj.cpf_cnpj"
-                        v-mask="mascara.cnpj"
                         required
                         :disabled="pay"
                         @input="validateInputs($event.target.id)"
@@ -144,11 +144,11 @@
 
             <div class="col-md-12">
                 <input
+                    v-model="obj.email"
                     type="email"
                     name="email"
                     class="form-control btn-pd"
                     placeholder="Digite Seu Email"
-                    v-model="obj.email"
                     :disabled="pay"
                     autocomplete="skibi dop"
                     required
@@ -157,14 +157,14 @@
 
             <div class="col-12 col-md-6">
                 <input
-                    type="password"
                     id="input-password"
+                    v-model="obj.password"
+                    type="password"
                     name="password"
                     autocomplete="new-password"
                     class="form-control btn-pd"
                     :class="{ 'is-invalid': errors.password }"
                     placeholder="Digite Sua Senha"
-                    v-model="obj.password"
                     :disabled="pay"
                     required
                     @input="validateInputs($event.target.id)"
@@ -181,14 +181,14 @@
 
             <div class="col-12 col-md-6">
                 <input
-                    type="password"
                     id="input-confirm-password"
+                    v-model="obj.confirm_password"
+                    type="password"
                     name="confirm_password"
                     autocomplete="new-password"
                     class="form-control btn-pd"
                     :class="{ 'is-invalid': errors.confirm_password }"
                     placeholder="Confirme Sua Senha"
-                    v-model="obj.confirm_password"
                     :disabled="pay"
                     required
                     @input="validateInputs($event.target.id)"
@@ -205,15 +205,15 @@
 
             <div class="col-12 col-md-6">
                 <input
-                    type="text"
                     id="input-celular"
+                    v-model="obj.celular"
+                    v-mask="mascara.cel"
+                    type="text"
                     name="celular"
                     class="form-control btn-pd"
                     :class="{ 'is-invalid': errors.celular }"
                     placeholder="Nº WhatsApp que será conectado"
-                    v-model="obj.celular"
                     :disabled="pay"
-                    v-mask="mascara.cel"
                     @input="validateInputs($event.target.id)"
                 />
 
@@ -229,15 +229,15 @@
             <div class="col-12 col-md-6">
                 <div class="position-relative d-flex align-items-center">
                     <input
+                        v-model="obj.cep"
+                        v-mask="mascara.cep"
                         type="text"
                         name="cep"
                         class="form-control btn-pd"
                         placeholder="Digite seu CEP"
-                        v-model="obj.cep"
                         :disabled="pay"
-                        v-mask="mascara.cep"
-                        @input="buscarCep()"
                         required
+                        @input="buscarCep()"
                     />
 
                     <div
@@ -251,21 +251,21 @@
 
             <div class="col-12 col-md-4">
                 <input
+                    v-model="obj.numero"
                     type="text"
                     name="numero"
                     placeholder="Nº"
                     class="form-control btn-pd"
-                    v-model="obj.numero"
                     :disabled="pay"
                 />
             </div>
 
             <div class="col-12 col-md-8">
                 <input
+                    v-model="obj.complemento"
                     type="text"
                     name="complemento"
                     placeholder="Complemento"
-                    v-model="obj.complemento"
                     :disabled="pay"
                     class="form-control btn-pd"
                 />
@@ -273,44 +273,44 @@
 
             <div class="col-md-6">
                 <input
+                    v-model="obj.bairro"
                     type="text"
                     name="bairro"
                     placeholder="Bairro"
                     class="form-control btn-pd"
-                    v-model="obj.bairro"
                     :disabled="pay"
                 />
             </div>
 
             <div class="col-md-6">
                 <input
+                    v-model="obj.endereco"
                     type="text"
                     name="endereco"
                     placeholder="Endereço"
                     class="form-control btn-pd"
-                    v-model="obj.endereco"
                     :disabled="pay"
                 />
             </div>
 
             <div class="col-md-6">
                 <input
+                    v-model="obj.cidade"
                     type="text"
                     name="cidade"
                     placeholder="Cidade"
                     class="form-control btn-pd"
-                    v-model="obj.cidade"
                     :disabled="pay"
                 />
             </div>
 
             <div class="col-md-6">
                 <input
+                    v-model="obj.uf"
                     type="text"
                     name="uf"
                     placeholder="Estado"
                     class="form-control btn-pd"
-                    v-model="obj.uf"
                     :disabled="pay"
                 />
             </div>
@@ -337,9 +337,9 @@
                     <div v-if="!loading.register">Cadastrar</div>
 
                     <div
+                        v-else
                         class="spinner-border"
                         role="status"
-                        v-else
                     >
                         <span class="visually-hidden">Processando...</span>
                     </div>
@@ -347,7 +347,6 @@
             </div>
         </form>
     </div>
-    <!-- /container -->
 </template>
 
 <script>

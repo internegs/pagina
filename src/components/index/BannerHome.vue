@@ -1,10 +1,11 @@
 <template>
     <div class="bg-color">
-        <HeaderMenu />
+        <header-menu />
+
         <section
+            id="home"
             class="home"
             style="padding-top: 100px"
-            id="home"
         >
             <div class="container">
                 <div class="row d-flex flex-column-reverse flex-md-row justify-content-around">

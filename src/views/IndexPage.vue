@@ -39,8 +39,8 @@ import BannerSolucoes from '@/components/index/BannerSolucoes.vue'
 import BannerApresentacao from '@/components/index/BannerApresentacao.vue'
 import BannerPlanos from '@/components/index/BannerPlanos.vue'
 import BannerFooter from '@/components/index/BannerFooter.vue'
-import Api from '@/services/api'
 import BannerPerguntas from '@/components/index/BannerPerguntas.vue'
+import Api from '@/services/api'
 import Swal from 'sweetalert2'
 
 export default {
@@ -118,6 +118,14 @@ button {
     position: fixed;
     bottom: 15px;
     right: 20px;
+    z-index: 1000;
+
+    transition: all 0.2s ease;
+    will-change: transform;
+}
+
+.link-flutuante:hover {
+    transform: scale(1.04);
 }
 
 .bg-laranja {
