@@ -4,9 +4,7 @@ import router from './router'
 import { createPinia } from 'pinia'
 import { createPersistedState } from 'pinia-plugin-persistedstate'
 import { MaskInput } from 'maska'
-import firebaseVue from './firebase/index'
 import '@fortawesome/fontawesome-free/css/all.css'
-import 'vue3-emoji-picker/css'
 import '@/assets/styles/index.scss'
 
 const app = createApp(App)
@@ -16,7 +14,6 @@ pinia.use(createPersistedState())
 
 app.use(router)
 app.use(pinia)
-app.use(firebaseVue)
 
 app.directive('mask', {
     mounted(el, binding) {
