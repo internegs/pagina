@@ -12,7 +12,6 @@ export default defineConfig({
     },
 
     server: {
-        host: 'ladingpage.inzupt',
         port: 8082,
     },
 

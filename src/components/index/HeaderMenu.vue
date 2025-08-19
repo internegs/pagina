@@ -12,7 +12,7 @@
                     <img
                         src="../../assets/img/inzupt.png"
                         alt="inzupt"
-                        width="220"
+                        width="140"
                         class="logo"
                     />
                 </router-link>
@@ -45,18 +45,21 @@
                         >
                             Home
                         </a>
+
                         <a
                             class="nav-link text-white fs-3 links"
                             href="#home"
                         >
                             A plataforma
                         </a>
+
                         <a
                             class="nav-link text-white fs-3 links"
                             href="#faq"
                         >
                             FAQ
                         </a>
+
                         <a
                             class="nav-link text-white fs-3 links"
                             href="#planos"
@@ -64,18 +67,15 @@
                             Planos
                         </a>
 
-                        <router-link
-                            to="#"
-                            class="link"
+                        <button
+                            type="button"
+                            class="w-100 text-center rounded-4"
+                            @click="handleLogin()"
                         >
-                            <div class="bg-laranja full text-center button rounded">
-                                <span
-                                    class="fs-3 text color-cinza text-white fw-bold text-uppercase"
-                                >
-                                    Login
-                                </span>
-                            </div>
-                        </router-link>
+                            <span class="fs-3 text color-cinza text-white fw-bold text-uppercase">
+                                Login
+                            </span>
+                        </button>
                     </div>
                 </div>
             </div>
@@ -86,12 +86,14 @@
 <script>
 export default {
     name: 'HeaderMenu',
+
     data() {
         return {
             situacao: false,
             value: 0,
         }
     },
+
     async mounted() {
         window.addEventListener('scroll', this.scrollHeader)
     },
@@ -103,6 +105,7 @@ export default {
 
             this.situacao = valor === 'true' ? true : false
         },
+
         scrollHeader() {
             const header = document.querySelector('[data-js]')
 
@@ -114,6 +117,10 @@ export default {
                     header.classList.remove('bg-nav')
                 }
             }
+        },
+
+        handleLogin() {
+            window.location.replace('http://localhost:8080/login')
         },
     },
 }
@@ -129,22 +136,53 @@ export default {
     background-image: linear-gradient(to right, #7ed0dd, #479fcf);
 }
 
+.navbar {
+    font-family: 'Fira Sans', sans-serif;
+    padding: 0.5rem 0 !important;
+    box-shadow: none !important;
+}
+
 .navbar-transparent {
     background-color: transparent;
 }
+
+.nav-link {
+    position: relative;
+    white-space: nowrap;
+}
+
+.nav-link::after {
+    content: '';
+    position: absolute;
+    bottom: 8px;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background-color: white;
+    transition: width 0.3s ease-out;
+}
+
+.nav-link:hover::after {
+    width: 100%;
+}
+
 button {
+    padding: 12px 30px;
+
     outline: 0;
-    border: 0;
-    background-color: transparent;
+    background-color: #f58634;
+    transition: transform 0.2s ease;
+    will-change: transform;
+}
+
+button:hover {
+    transform: scale(1.02);
 }
 
 .navbar {
     box-shadow: none !important;
 }
 
-.button {
-    padding: 15px 35px;
-}
 .navbar-toggler {
     border: 0 !important;
 }

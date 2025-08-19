@@ -5,7 +5,6 @@
         <section
             id="home"
             class="home"
-            style="padding-top: 100px"
         >
             <div class="container">
                 <div class="row d-flex flex-column-reverse flex-md-row justify-content-around">
@@ -69,7 +68,6 @@ export default {
 <style scoped>
 .home {
     height: 100vh;
-    padding: 30px;
     display: flex;
     align-items: center;
 }

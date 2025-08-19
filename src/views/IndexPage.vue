@@ -18,7 +18,7 @@
             <banner-apresentacao :data="data" />
             <banner-planos class="mt-4" />
             <banner-perguntas />
-            <banner-footer :data="data" />
+            <banner-footer />
         </template>
 
         <a
