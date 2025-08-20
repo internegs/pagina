@@ -84,6 +84,8 @@
 </template>
 
 <script>
+import LINKS from '@/utils/links'
+
 export default {
     name: 'HeaderMenu',
 
@@ -120,7 +122,7 @@ export default {
         },
 
         handleLogin() {
-            window.location.replace('http://localhost:8080/login')
+            window.location.replace(LINKS.login)
         },
     },
 }
