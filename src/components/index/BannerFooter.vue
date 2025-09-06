@@ -89,7 +89,7 @@
                             />
                         </a>
                         <a
-                            href="https://api.whatsapp.com/send/?phone=556541410643&text=Oi+acessei+o+site+https%3A%2F%2Finzupt.com.br+e+gostaria+de+mais+informa%C3%A7%C3%B5es&type=phone_number&app_absent=0"
+                            href="https://api.whatsapp.com/send/?phone=5565920011863&text=Oi+acessei+o+site+https%3A%2F%2Finzupt.com.br+e+gostaria+de+mais+informa%C3%A7%C3%B5es&type=phone_number&app_absent=0"
                             style="padding-left: 10px"
                         >
                             <img
