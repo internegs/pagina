@@ -59,24 +59,24 @@ export default {
         return {
             data: [],
             loadingPage: false,
-             locationData: {
-            ip: '',
-            city: '',
-            region: '',
-            pais: '',
-            country_code: '',
-            network: '',
-            version: '',
-            cidade: '',
-            estado: '',
-            region_code: '',
-            continente: '',
-            cep: '',
-            latitude: 0,
-            longitude: 0,
-            timezone: '',
-            utc_offset: '',
-            country_calling_code: '',
+            locationData: {
+                ip: '',
+                city: '',
+                region: '',
+                pais: '',
+                country_code: '',
+                network: '',
+                version: '',
+                cidade: '',
+                estado: '',
+                region_code: '',
+                continente: '',
+                cep: '',
+                latitude: 0,
+                longitude: 0,
+                timezone: '',
+                utc_offset: '',
+                country_calling_code: '',
             },
         }
     },
@@ -84,52 +84,53 @@ export default {
     created() {
         localStorage.clear()
         //  this.getLocation();
-        
+
         this.front()
-        
     },
-     mounted() {
+    mounted() {
         this.User_site()
-     },
+    },
 
     methods: {
         async getLocation() {
-        
-            const response = await fetch('https://ipapi.co/json/');
-        
-        const data = await response.json();
+            const response = await fetch('https://ipapi.co/json/')
 
-        this.locationData = {
-            ip: data.ip,
-            cidade: data.city,
-            estado: data.region,
-            pais: data.country_name,
-            network: data.network,
-            version: data.version,
-            country_code: data.country_code,
-            region_code: data.region_code,
-            cep: data.postal,
-            latitude: data.latitude,
-            longitude: data.longitude,
-            timezone: data.timezone,
-            utc_offset: data.utc_offset,
-            country_calling_code: data.country_calling_code,
-            continente: data.continent_code,
-            operadora: data.org,
-        }
+            const data = await response.json()
+
+            this.locationData = {
+                ip: data.ip,
+                cidade: data.city,
+                estado: data.region,
+                pais: data.country_name,
+                network: data.network,
+                version: data.version,
+                country_code: data.country_code,
+                region_code: data.region_code,
+                cep: data.postal,
+                latitude: data.latitude,
+                longitude: data.longitude,
+                timezone: data.timezone,
+                utc_offset: data.utc_offset,
+                country_calling_code: data.country_calling_code,
+                continente: data.continent_code,
+                operadora: data.org,
+            }
         },
-        async User_site(){
-            
-         await   this.getLocation();
-        await Api.post('/user_site/ZmlsYWRlYXRlbmRpbWVudG8=',btoa(JSON.stringify( this.locationData)))
-            .then(response => {
+
+        async User_site() {
+            await this.getLocation()
+            await Api.post(
+                '/user_site/ZmlsYWRlYXRlbmRpbWVudG8=',
+                btoa(JSON.stringify(this.locationData))
+            )
+                .then(response => {
                     console.log(response.data.data)
                 })
                 .catch(error => {
                     console.error(error)
                 })
-        
         },
+
         async front() {
             this.loadingPage = true
 
