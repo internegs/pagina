@@ -5,42 +5,50 @@
         <section
             id="home"
             class="home"
-            style="padding-top: 100px"
+            style="padding-top: 120px"
         >
-            <div class="container">
-                <div class="row d-flex flex-column-reverse flex-md-row justify-content-around">
-                    <div class="col-md-6 d-flex flex-column justify-content-center">
-                        <h1 class="fw-bold f-36 text-white mt-3 font-oswald">
-                            {{ bannerData?.titulo || 'Não definido' }}
-                        </h1>
-                        <p
-                            style="
-                                font-size: 18px;
-                                font-family:
-                                    Fira Sans,
-                                    sans-serif;
-                            "
-                            class="text-white mt-3"
-                        >
-                            {{ bannerData?.resumo || 'Não definido' }}
-                        </p>
+            <div class="home-container">
+                <div class="home-content">
+                    <h1 class="fw-bold f-36 text-white mt-3 font-oswald text-center">
+                        {{ bannerData?.titulo || 'Não definido' }}
+                    </h1>
 
-                        <div class="btn-div mt-3">
-                            <a
-                                href="#planos"
-                                class="bg-laranja text-white rounded mt-3 fs-4 fw-bold"
-                            >
-                                COMECE AGORA
-                            </a>
-                        </div>
-                    </div>
-                    <div class="col-md-6">
-                        <iframe
-                            class="responsive-iframe"
-                            src="https://inzupt.com/inzupt_video.mp4"
-                        ></iframe>
+                    <p
+                        style="
+                            font-size: 18px;
+                            font-family:
+                                Fira Sans,
+                                sans-serif;
+                        "
+                        class="text-white mt-3"
+                    >
+                        {{ bannerData?.resumo || 'Não definido' }}
+                    </p>
+
+                    <div class="btn-div mt-3">
+                        <a
+                            href="#planos"
+                            class="bg-laranja text-white rounded mt-3 fs-4 fw-bold"
+                        >
+                            COMECE AGORA
+                        </a>
                     </div>
                 </div>
+
+                <video
+                    autoplay
+                    muted
+                    controls
+                    controlslist="nodownload nofullscreen noremoteplayback"
+                    disablepictureinpicture
+                >
+                    <source
+                        src="https://inzupt.com/inzupt_video.mp4"
+                        type="video/mp4"
+                    />
+
+                    Tipo de video nao suportado pelo seu navegador
+                </video>
             </div>
         </section>
     </div>
@@ -68,31 +76,82 @@ export default {
 
 <style scoped>
 .home {
-    height: 100vh;
     padding: 30px;
     display: flex;
     align-items: center;
+    justify-content: center;
+}
+
+@media (min-width: 1200px) {
+    .home {
+        height: 100vh;
+    }
+}
+
+.home-container {
+    display: flex;
+    flex-direction: column-reverse;
+    align-items: center;
+    justify-content: space-between;
+    width: 95%;
+}
+
+@media (min-width: 1200px) {
+    .home-container {
+        flex-direction: row;
+    }
+}
+
+@media (min-width: 1500px) {
+    .home-container {
+        width: 1456px;
+        flex-direction: row;
+    }
+}
+
+.home-content {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    width: 100%;
+}
+
+@media (min-width: 1200px) {
+    .home-content {
+        width: 50%;
+    }
+}
+
+video {
+    width: 95%;
+    border-radius: 12px;
+}
+
+@media (min-width: 1200px) {
+    video {
+        width: 500px;
+    }
 }
 
 .f-36 {
     font-size: 50px;
 }
-.img-home {
-    width: 90%;
-}
-.mr-60 {
-    margin-right: 60px;
-}
+
 .btn-div a {
     padding: 12px 20px;
+}
+
+.bg-laranja {
+    background-color: #f58634;
+}
+
+.bg-color {
+    background-image: linear-gradient(to right, #7ed0dd, #479fcf);
 }
 
 @media (max-width: 771px) {
     .btn-div a {
         width: 100%;
-    }
-    .home {
-        height: auto;
     }
 }
 
@@ -103,15 +162,5 @@ export default {
     .f-36 {
         font-size: 40px;
     }
-}
-
-.responsive-iframe {
-    width: 100%;
-    height: 100%;
-    padding-top: 5%;
-}
-
-.bg-color {
-    background-image: linear-gradient(to right, #7ed0dd, #479fcf);
 }
 </style>

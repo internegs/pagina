@@ -190,10 +190,6 @@ button {
     transform: scale(1.04);
 }
 
-.bg-laranja {
-    background-color: #f58634;
-}
-
 .loading-container {
     width: 100%;
     height: 100dvh;

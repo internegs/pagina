@@ -64,18 +64,18 @@ export default {
     padding: 15px 20px;
 }
 
+.bg-laranja {
+    background-color: #f58634;
+}
+
 .hover:hover {
     background-color: #ce5600;
 }
+
 .f-36 {
     font-size: 46px;
 }
-.img-home {
-    width: 90%;
-}
-.mr-60 {
-    margin-right: 60px;
-}
+
 .btn-div button {
     padding: 10px 20px;
 }
@@ -91,9 +91,5 @@ export default {
     .btn-div a {
         width: 100%;
     }
-}
-
-.bg-color {
-    background-image: linear-gradient(to right, #7ed0dd, #5ba3ca);
 }
 </style>

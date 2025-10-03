@@ -1,7 +1,7 @@
-const ORIGIN = 'https://admin.inzupt.com.br'
+const ORIGIN_ADMIN = import.meta.env.VITE_ADMIN_URL
 
 const LINKS = {
-    login: `${ORIGIN}/login`,
+    login: `${ORIGIN_ADMIN}/login`,
 }
 
 export default LINKS

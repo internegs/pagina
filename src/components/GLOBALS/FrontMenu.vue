@@ -1,7 +1,7 @@
 <template>
     <header>
         <nav
-            class="navbar navbar-expand-lg p-4 navbar-transparent fixed-top"
+            class="navbar navbar-expand-lg fixed-top"
             data-js="header"
         >
             <div class="container">
@@ -12,7 +12,7 @@
                     <img
                         src="../../assets/img/inzupt.png"
                         alt="inzupt"
-                        width="200"
+                        width="140"
                         class="logo"
                     />
                 </router-link>
@@ -44,12 +44,7 @@
                         >
                             Home
                         </router-link>
-                        <router-link
-                            class="nav-link text-white fs-3 links"
-                            to="/"
-                        >
-                            FAQ
-                        </router-link>
+
                         <router-link
                             class="nav-link text-white fs-3 links"
                             to="/"
@@ -58,16 +53,10 @@
                         </router-link>
 
                         <router-link
-                            to="/login"
-                            class="link"
+                            class="nav-link text-white fs-3 links"
+                            to="/"
                         >
-                            <div class="bg-laranja full text-center button rounded">
-                                <span
-                                    class="fs-3 text color-cinza text-white fw-bold text-uppercase"
-                                >
-                                    Login
-                                </span>
-                            </div>
+                            FAQ
                         </router-link>
                     </div>
                 </div>
@@ -77,6 +66,8 @@
 </template>
 
 <script>
+import LINKS from '@/utils/links.js'
+
 export default {
     name: 'HeaderMenu',
 
@@ -90,7 +81,8 @@ export default {
             value: 0,
         }
     },
-    mouted() {
+
+    mounted() {
         window.addEventListener('scroll', this.scrollHeader)
     },
 
@@ -105,6 +97,7 @@ export default {
 
             this.situacao = valor === 'true' ? true : false
         },
+
         scrollHeader() {
             const header = document.querySelector('[data-js]')
 
@@ -126,24 +119,17 @@ export default {
     text-decoration: none;
 }
 
-.bg-nav {
-    background-image: linear-gradient(to right, #7ed0dd, #479fcf);
-}
 .navbar {
     box-shadow: none !important;
+    background-image: linear-gradient(to right, #7ed0dd, #479fcf);
 }
-.navbar-transparent {
-    background-color: transparent;
-}
+
 button {
     outline: 0;
     border: 0;
     background-color: transparent;
 }
 
-.button {
-    padding: 15px 35px;
-}
 .navbar-toggler {
     border: 0 !important;
 }
@@ -176,10 +162,6 @@ button {
 
 .navbar {
     font-family: 'Fira Sans', sans-serif;
-}
-
-.bold {
-    font-weight: bold;
 }
 
 .navbar-nav button {

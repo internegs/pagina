@@ -165,10 +165,6 @@ export default {
 </script>
 
 <style scoped>
-.mt-10 {
-    margin-top: 200px;
-}
-
 .sombra {
     box-shadow: 5px 5px 15px 5px rgba(0, 0, 0, 0.2);
 }
@@ -178,10 +174,6 @@ export default {
     background-color: #ce5800;
     font-size: 1.2rem;
     border-radius: 30px;
-}
-
-.verde {
-    color: #36b37e;
 }
 
 .precos {
@@ -216,23 +208,8 @@ export default {
     color: #fff;
 }
 
-.plano:nth-child(2) {
-    border: 2px solid #f58634;
-}
-
 button {
     font-family: 'Fira Sans', sans-serif;
-}
-
-@media (max-width: 1000px) {
-    .planos {
-        gap: 20px;
-        grid-template-columns: 1fr;
-    }
-}
-
-.bg-azul {
-    background-color: #00308f;
 }
 
 @media (max-width: 600px) {

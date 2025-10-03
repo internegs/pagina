@@ -1,10 +1,10 @@
 <template>
     <header>
         <nav
-            class="navbar navbar-expand-lg p-4 navbar-transparent fixed-top"
+            class="navbar navbar-expand-lg fixed-top"
             data-js="header"
         >
-            <div class="container">
+            <div class="nav-container">
                 <router-link
                     to="/"
                     class="navbar-brand"
@@ -12,100 +12,124 @@
                     <img
                         src="../../assets/img/inzupt.png"
                         alt="inzupt"
-                        width="220"
+                        width="140"
                         class="logo"
                     />
                 </router-link>
 
+                <!-- Ícone hamburguer com evento de clique -->
                 <div
-                    :class="situacao ? 'active' : ''"
-                    class="menu_hamburguer navbar-toggler"
-                    data-bs-toggle="collapse"
-                    data-bs-target="#navbarSupportedContent"
-                    aria-controls="navbarSupportedContent"
-                    aria-expanded="false"
-                    aria-label="Toggle navigation"
-                    @click="responsivo()"
+                    id="nav-icon"
+                    :class="{ open: isMenuOpen }"
+                    @click="toggleMenu"
                 >
-                    <div class="one"></div>
-                    <div class="two"></div>
-                    <div class="three"></div>
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                    <span></span>
                 </div>
 
-                <div
-                    id="navbarSupportedContent"
-                    class="collapse navbar-collapse mgt-2"
+                <!-- Menu controlado por ambas as condições -->
+                <ul
+                    v-if="shouldShowNav"
+                    class="d-flex align-items-center flex-column flex-lg-row gap-4 shadow-xl"
                 >
-                    <ul class="navbar-nav me-auto mb-2 mb-lg-0"></ul>
-
-                    <div class="d-flex align-items-center flex-column flex-lg-row gap-4">
+                    <li>
                         <a
                             class="nav-link text-white fs-3 links"
                             href="#home"
                         >
                             Home
                         </a>
+                    </li>
+
+                    <li>
                         <a
                             class="nav-link text-white fs-3 links"
                             href="#home"
                         >
                             A plataforma
                         </a>
-                        <a
-                            class="nav-link text-white fs-3 links"
-                            href="#faq"
-                        >
-                            FAQ
-                        </a>
+                    </li>
+
+                    <li>
                         <a
                             class="nav-link text-white fs-3 links"
                             href="#planos"
                         >
                             Planos
                         </a>
+                    </li>
 
-                        <router-link
-                            to="#"
-                            class="link"
+                    <li>
+                        <a
+                            class="nav-link text-white fs-3 links"
+                            href="#faq"
                         >
-                            <div class="bg-laranja full text-center button rounded">
-                                <span
-                                    class="fs-3 text color-cinza text-white fw-bold text-uppercase"
-                                >
-                                    Login
-                                </span>
-                            </div>
-                        </router-link>
-                    </div>
-                </div>
+                            FAQ
+                        </a>
+                    </li>
+
+                    <li>
+                        <button
+                            type="button"
+                            class="btn-login"
+                            @click="handleLogin"
+                        >
+                            <span class="fs-3 text color-cinza text-white fw-bold text-uppercase">
+                                Login
+                            </span>
+                        </button>
+                    </li>
+                </ul>
             </div>
         </nav>
     </header>
 </template>
 
 <script>
+import LINKS from '@/utils/links.js'
+
 export default {
     name: 'HeaderMenu',
+
     data() {
         return {
-            situacao: false,
-            value: 0,
+            windowWidth: window.innerWidth,
+            isMenuOpen: false,
         }
     },
-    async mounted() {
+
+    computed: {
+        shouldShowNav() {
+            if (this.windowWidth > 1200) {
+                return true
+            }
+            return this.isMenuOpen
+        },
+    },
+
+    watch: {
+        windowWidth(newVal) {
+            if (newVal > 1200) {
+                this.isMenuOpen = false
+            }
+        },
+    },
+
+    mounted() {
         window.addEventListener('scroll', this.scrollHeader)
+        window.addEventListener('resize', this.updateWindowWidth)
+    },
+
+    beforeUnmount() {
+        window.removeEventListener('scroll', this.scrollHeader)
+        window.removeEventListener('resize', this.updateWindowWidth)
     },
 
     methods: {
-        responsivo() {
-            const botao = document.querySelector('[aria-expanded]')
-            const valor = botao.getAttribute('aria-expanded')
-
-            this.situacao = valor === 'true' ? true : false
-        },
         scrollHeader() {
             const header = document.querySelector('[data-js]')
-
             if (header) {
                 const sticky = header.offsetTop
                 if (window.pageYOffset > sticky) {
@@ -115,99 +139,165 @@ export default {
                 }
             }
         },
+
+        handleLogin() {
+            window.open(LINKS.login, '_blank', 'noopener,noreferrer')
+        },
+
+        updateWindowWidth() {
+            this.windowWidth = window.innerWidth
+        },
+
+        toggleMenu() {
+            this.isMenuOpen = !this.isMenuOpen
+        },
     },
 }
 </script>
 
 <style scoped>
-.link {
-    text-decoration: none;
+li {
+    list-style: none;
 }
 
-.bg-nav {
-    /* background-color: #0774ae !important; */
+.navbar {
+    justify-content: center;
     background-image: linear-gradient(to right, #7ed0dd, #479fcf);
 }
 
-.navbar-transparent {
-    background-color: transparent;
+.nav-container {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 95%;
 }
-button {
-    outline: 0;
-    border: 0;
-    background-color: transparent;
+
+@media (min-width: 1500px) {
+    .nav-container {
+        width: 1456px;
+    }
+}
+
+/* Estilos do ícone hamburguer */
+#nav-icon {
+    width: 40px;
+    height: 35px;
+    position: relative;
+    margin: 0;
+    -webkit-transform: rotate(0deg);
+    -moz-transform: rotate(0deg);
+    -o-transform: rotate(0deg);
+    transform: rotate(0deg);
+    -webkit-transition: 0.5s ease-in-out;
+    -moz-transition: 0.5s ease-in-out;
+    -o-transition: 0.5s ease-in-out;
+    transition: 0.5s ease-in-out;
+    cursor: pointer;
+    display: none; /* Esconde em desktop */
+}
+
+#nav-icon span {
+    display: block;
+    position: absolute;
+    height: 4px;
+    width: 100%;
+    background: #ffffff;
+    border-radius: 4px;
+    opacity: 1;
+    left: 0;
+    -webkit-transform: rotate(0deg);
+    -moz-transform: rotate(0deg);
+    -o-transform: rotate(0deg);
+    transform: rotate(0deg);
+    -webkit-transition: 0.25s ease-in-out;
+    -moz-transition: 0.25s ease-in-out;
+    -o-transition: 0.25s ease-in-out;
+    transition: 0.25s ease-in-out;
+}
+
+#nav-icon span:nth-child(1) {
+    top: 0px;
+}
+
+#nav-icon span:nth-child(2),
+#nav-icon span:nth-child(3) {
+    top: 12px;
+}
+
+#nav-icon span:nth-child(4) {
+    top: 24px;
+}
+
+#nav-icon.open span:nth-child(1) {
+    top: 12px;
+    width: 0%;
+    left: 50%;
+}
+
+#nav-icon.open span:nth-child(2) {
+    -webkit-transform: rotate(45deg);
+    -moz-transform: rotate(45deg);
+    -o-transform: rotate(45deg);
+    transform: rotate(45deg);
+}
+
+#nav-icon.open span:nth-child(3) {
+    -webkit-transform: rotate(-45deg);
+    -moz-transform: rotate(-45deg);
+    -o-transform: rotate(-45deg);
+    transform: rotate(-45deg);
+}
+
+#nav-icon.open span:nth-child(4) {
+    top: 12px;
+    width: 0%;
+    left: 50%;
+}
+
+/* Menu mobile */
+ul {
+    margin: 0;
+    padding: 0;
+}
+
+/* Mostra hamburguer apenas em mobile */
+@media (max-width: 1200px) {
+    #nav-icon {
+        display: block;
+    }
+
+    ul {
+        position: absolute;
+        top: 100%;
+        left: 0;
+        width: 100%;
+        background: linear-gradient(to right, #7ed0dd, #479fcf);
+        border-radius: 10px;
+        padding: 20px;
+        flex-direction: column;
+        z-index: 1000;
+        box-shadow: 0 2px 8px 0 rgba(0, 0, 0, 0.25);
+    }
+}
+
+.btn-login {
+    background-color: #f58634 !important;
+    padding: 0.8rem 1.2rem;
+    border-radius: 12px;
+    transition: all 0.3s ease;
+    will-change: transform;
+    backface-visibility: hidden;
+    border: none;
+    cursor: pointer;
+}
+
+.btn-login:active {
+    transform: scale(0.98) translateY(1px);
 }
 
 .navbar {
     box-shadow: none !important;
-}
-
-.button {
-    padding: 15px 35px;
-}
-.navbar-toggler {
-    border: 0 !important;
-}
-
-.menu_hamburguer {
-    width: 40px;
-    height: 30px;
-    margin-right: 20px;
-}
-.menu_hamburguer div {
-    background-color: #fff;
-    height: 4px;
-    width: 40px;
-    margin: 5px auto;
-    opacity: 1;
-    transition-duration: 0.3s;
-}
-
-.menu_hamburguer.active .one {
-    transform: rotate(45deg) translate(7px, 7px);
-}
-
-.menu_hamburguer.active .two {
-    opacity: 0;
-}
-
-.menu_hamburguer.active .three {
-    transform: rotate(-45deg) translate(5px, -7px);
-}
-
-.navbar {
     font-family: 'Fira Sans', sans-serif;
-}
-
-.bold {
-    font-weight: bold;
-}
-
-.navbar-nav button {
-    width: 100%;
-}
-.full {
-    width: 100%;
-}
-
-@media (max-width: 995px) {
-    .link {
-        width: 100%;
-    }
-    .mgt-2 {
-        padding-top: 30px;
-    }
-}
-
-@media (max-width: 997px) {
-    nav.navbar {
-        background-image: linear-gradient(to right, #7ed0dd, #479fcf);
-    }
-}
-
-@media (max-width: 400px) {
-    .logo {
-        width: 140px;
-    }
 }
 </style>
